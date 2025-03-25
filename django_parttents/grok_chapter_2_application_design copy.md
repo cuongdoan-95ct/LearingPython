@@ -22,7 +22,9 @@ Nó cũng giới thiệu dự án mẫu "SuperBook" - một mạng xã hội cho
 #### Ví dụ:
 - Câu chuyện cho SuperBook:  
   *"Captain Obvious muốn chia sẻ chiến công mới nhất của mình. Anh ấy đăng nhập vào SuperBook,
-  viết một bài về việc cứu thế giới khỏi robot khổng lồ, thêm ảnh minh họa, và đăng bài. Hexa nhìn thấy bài viết, thích nó, và để lại bình luận: 'Tuyệt vời!'."*
+  viết một bài về việc cứu thế giới khỏi robot khổng lồ, thêm ảnh minh họa, và đăng bài.
+  Hexa nhìn thấy bài viết, thích nó, và để lại bình luận:
+  'Tuyệt vời!'."*
 
 ### 3. HTML Mockups (Mô hình HTML)
 #### Giải thích:
@@ -176,4 +178,5 @@ python manage.py startapp posts
 python manage.py startapp accounts
 ```
 
----
+### 13. Tóm tắt
+- **Chương 2**: Hướng dẫn cách bắt đầu dự án Django từ yêu cầu, thiết kế, đến chia app, nhấn mạnh tái sử dụng và thực hành tốt.

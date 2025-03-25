@@ -236,7 +236,6 @@ python manage.py migrate
 ---
 
 ### Tóm tắt
-- **Chương 2**: Hướng dẫn cách bắt đầu dự án Django từ yêu cầu, thiết kế, đến chia app, nhấn mạnh tái sử dụng và thực hành tốt.
 - **Chương 3**: Tập trung vào cách thiết kế model hiệu quả với các pattern như chuẩn hóa, mixins, và tối ưu truy xuất dữ liệu.
 
 Bạn có muốn tôi giải thích thêm phần nào hoặc cung cấp ví dụ khác không?
