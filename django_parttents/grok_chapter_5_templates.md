@@ -1,16 +1,18 @@
 ### Chương 5: Templates (Tổng quan)
-Chương này tập trung vào cách sử dụng **templates** (mẫu) trong Django để tạo giao diện người dùng (UI) một cách linh hoạt và dễ bảo trì. Nó giới thiệu ngôn ngữ mẫu Django (Django Template Language - DTL), cách tổ chức file template, và các mẫu thiết kế (patterns) hữu ích.
+Chương này tập trung vào cách sử dụng **templates** trong Django để tạo giao diện người dùng (UI) một cách linh hoạt và dễ bảo trì.  
+Nó giới thiệu ngôn ngữ templates Django (Django Template Language - DTL), cách tổ chức file template, và các patterns hữu ích.
 
 #### Nội dung chính:
-1. **Ngôn ngữ mẫu của Django (Django Template Language - DTL)**
+1. **Django Template Language - DTL**
 2. **Tổ chức Templates**
 3. **Cách Templates hoạt động**
 4. **Sử dụng Bootstrap**
-5. **Các mẫu Template (Template Patterns)**
+5. **Template Patterns**
 ---
 
-### 1. Ngôn ngữ mẫu của Django (Understanding Django's Template Language Features)
-**Django Template Language (DTL)** là công cụ chính để tạo giao diện động trong Django. Nó đơn giản, an toàn và không phải là một ngôn ngữ lập trình đầy đủ (theo triết lý của Django).
+### 1. Understanding Django's Template Language Features
+**Django Template Language (DTL)** là công cụ chính để tạo giao diện động trong Django.  
+Nó đơn giản, an toàn và không phải là một ngôn ngữ lập trình đầy đủ (theo triết lý của Django).
 
 #### Các thành phần chính:
 - **Variables (Biến)**: Hiển thị dữ liệu từ context.

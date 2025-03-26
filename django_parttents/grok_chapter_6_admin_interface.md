@@ -21,9 +21,9 @@ Giao diện admin của Django cho phép quản lý dữ liệu (thêm, sửa, x
 # models.py
 from django.db import models
 
-class SanPham(models.Model):
-    ten = models.CharField(max_length=100)
-    gia = models.IntegerField()
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.IntegerField()
 
     def __str__(self):
         return self.ten
@@ -31,11 +31,11 @@ class SanPham(models.Model):
 ```python
 # admin.py
 from django.contrib import admin
-from .models import SanPham
+from .models import Product
 
-admin.site.register(SanPham)
+admin.site.register(Product)
 ```
-- Sau khi đăng ký `SanPham` trong `admin.py`, bạn có thể truy cập `/admin/` (sau khi đăng nhập với tài khoản superuser) để quản lý sản phẩm.
+- Sau khi đăng ký `Product` trong `admin.py`, bạn có thể truy cập `/admin/` (sau khi đăng nhập với tài khoản superuser) để quản lý sản phẩm.
 
 ---
 
@@ -47,14 +47,14 @@ Bạn có thể tùy chỉnh cách model hiển thị trong admin bằng cách s
 ```python
 # admin.py
 from django.contrib import admin
-from .models import SanPham
+from .models import Product
 
-class SanPhamAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = ("ten", "gia")  # Hiển thị cột tên và giá
     list_filter = ("gia",)        # Bộ lọc theo giá
     search_fields = ("ten",)      # Tìm kiếm theo tên
 
-admin.site.register(SanPham, SanPhamAdmin)
+admin.site.register(Product, ProductAdmin)
 ```
 - **`list_display`**: Hiển thị danh sách sản phẩm với cột "tên" và "giá".
 - **`list_filter`**: Thêm bộ lọc để lọc sản phẩm theo giá.
@@ -95,15 +95,15 @@ admin.site.site_title = "Admin cửa hàng"
 - Thêm CSS tùy chỉnh:
 ```python
 # admin.py
-class SanPhamAdmin(admin.ModelAdmin):
-    list_display = ("ten", "gia")
+class ProductSanPhamAdmin(admin.ModelAdmin):
+    list_display = ("name", "price")
     
     class Media:
         css = {
             "all": ("css/admin_custom.css",)
         }
 
-admin.site.register(SanPham, SanPhamAdmin)
+admin.site.register(Product, ProductAdmin)
 ```
 ```css
 /* static/css/admin_custom.css */

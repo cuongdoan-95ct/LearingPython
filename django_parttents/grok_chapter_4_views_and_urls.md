@@ -24,10 +24,10 @@ Chương này tập trung vào cách các **views** (chế độ xem) và **URLs
 ```python
 from django.http import HttpResponse
 
-def xin_chao(request):
-    return HttpResponse("Xin chào! Đây là một view đơn giản.")
+def hello(request):
+    return HttpResponse("Hello! This is simple view!.")
 ```
-- Khi người dùng truy cập URL liên kết với hàm `xin_chao`, họ sẽ nhận được dòng chữ "Xin chào! Đây là một view đơn giản."
+- Khi người dùng truy cập URL liên kết với hàm `hello`, họ sẽ nhận được dòng chữ "Hello! This is simple view!."
 
 ---
 
@@ -40,11 +40,11 @@ Django giới thiệu **class-based views** (CBVs) để thay thế các hàm vi
 from django.views import View
 from django.http import HttpResponse
 
-class XinChaoView(View):
+class HelloView(View):
     def get(self, request):
-        return HttpResponse("Xin chào từ Class-based View!")
+        return HttpResponse("Hello from Class-based View!")
 ```
-- Trong ví dụ này, `XinChaoView` là một lớp kế thừa từ `View`. Phương thức `get` xử lý yêu cầu GET.
+- Trong ví dụ này, `HelloView` là một lớp kế thừa từ `View`. Phương thức `get` xử lý yêu cầu GET.
 
 #### Class-based Generic Views:
 Django cung cấp các generic views (views chung) như `ListView`, `DetailView` để giảm bớt công việc lặp lại.
@@ -99,6 +99,10 @@ class TrangBiMatView(View):
         return HttpResponse("Chỉ người dùng đăng nhập mới thấy được!")
 ```
 - `@method_decorator(login_required)` đảm bảo chỉ người dùng đã đăng nhập mới truy cập được view này.
+
+- Decorators ít linh hoạt hơn mixin.
+- Tuy nhiên, chúng đơn giản hơn. Bạn có thể sử dụng cả hai
+- Trên thực tế, nhiều mixin được triển khai bằng decorator.
 
 ---
 
