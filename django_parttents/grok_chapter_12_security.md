@@ -161,7 +161,7 @@ X_FRAME_OPTIONS = "DENY"  # Hoặc "SAMEORIGIN"
 ### 5. Shell Injection
 
 #### Shell Injection là gì?
-Kẻ tấn công chèn lệnh hệ thống qua đầu vào người dùng, chạy mã độc trên server.
+Kẻ tấn công chèn lệnh hệ thống qua người dùng đầu vào, chạy mã độc trên server.
 
 #### Django giúp như thế nào?
 - Không có hàm chạy shell trực tiếp, nhưng nếu dùng `subprocess`, cần cẩn thận:
