@@ -1,11 +1,4 @@
-Bạn说得对 (nói đúng)! Tôi xin lỗi vì bản tóm tắt trước đó chưa đầy đủ. Tôi đã xem lại kỹ lưỡng trang tài liệu **"Tasks"** tại https://docs.celeryq.dev/en/stable/userguide/tasks.html và sẽ cung cấp một phiên bản chi tiết hơn, bao quát toàn bộ nội dung, kèm giải thích và ví dụ bằng tiếng Việt. Dưới đây là phiên bản hoàn chỉnh:
-
----
-
 ### Tổng quan về Tasks trong Celery
-
-Phần **Tasks** trong tài liệu Celery là hướng dẫn toàn diện về cách sử dụng, cấu hình và tối ưu hóa các tác vụ (tasks) trong Celery. Nội dung rất phong phú, vì vậy tôi sẽ chia nhỏ từng mục để bạn dễ theo dõi.
-
 #### Nội dung chính:
 1. **Cơ bản về Tasks (Basics)**
 2. **Đặt tên Tasks (Task Names)**
@@ -20,7 +13,7 @@ Phần **Tasks** trong tài liệu Celery là hướng dẫn toàn diện về c
 
 ---
 
-### 1. Cơ bản về Tasks (Basics)
+### 1. Cơ bản về Tasks (Basics)****
 
 #### Task là gì?
 - Task là đơn vị công việc mà Celery xử lý bất đồng bộ. Bạn định nghĩa task như một hàm Python và Celery gửi nó đến worker qua message broker.
@@ -389,3 +382,156 @@ process_data.delay("Test")
 g = group(process_data.s(i) for i in ["A", "B", "C"])
 g.delay()
 ```
+
+### 📌 **Task Request (`self.request`) trong Celery**  
+
+Trang tài liệu bạn gửi nói về **Task Request Context**, tức là thông tin về một task khi nó đang chạy trong Celery. Đây là cách Celery cung cấp **metadata** về task, bao gồm **ID của task, số lần retry, hàng đợi (queue), thông tin routing**, v.v.  
+
+---
+
+## 🔹 **1. Cách truy cập `self.request` trong một task**  
+Để truy cập **ngữ cảnh yêu cầu (`self.request`)**, bạn cần dùng **`bind=True`** khi khai báo task:  
+```python
+from celery import Celery
+
+app = Celery('tasks', broker='redis://localhost:6379/0')
+
+@app.task(bind=True)
+def my_task(self, x, y):
+    print(f"📌 Task ID: {self.request.id}")  
+    print(f"🔄 Số lần retry: {self.request.retries}")  
+    print(f"📩 Task chạy trên queue: {self.request.delivery_info['routing_key']}")  
+    return x + y
+```
+📌 **Giải thích:**  
+- `self.request.id`: ID duy nhất của task.  
+- `self.request.retries`: Số lần retry của task.  
+- `self.request.delivery_info['routing_key']`: Xác định queue mà task đang chạy.  
+
+---
+
+## 🔹 **2. Các thuộc tính quan trọng của `self.request`**  
+| 🏷️ Thuộc tính | 🔍 Mô tả |
+|--------------|--------|
+| `self.request.id` | ID duy nhất của task. |
+| `self.request.retries` | Số lần task đã được retry. |
+| `self.request.is_eager` | `True` nếu task đang chạy trực tiếp mà không qua worker. |
+| `self.request.hostname` | Tên worker đang thực thi task. |
+| `self.request.delivery_info` | Thông tin routing của task, bao gồm queue name. |
+| `self.request.args` | Danh sách tham số truyền vào task (dạng `tuple`). |
+| `self.request.kwargs` | Các tham số dạng `keyword arguments` (dạng `dict`). |
+| `self.request.headers` | Các headers đi kèm khi gửi task. |
+
+---
+
+## 🔹 **3. Ví dụ: Kiểm soát số lần retry của task bằng `self.request.retries`**  
+Nếu bạn muốn một task **tự động retry khi gặp lỗi**, có thể dùng `self.request.retries` để kiểm tra số lần retry và `self.retry()` để thử lại:  
+```python
+@app.task(bind=True, max_retries=3)
+def risky_task(self):
+    try:
+        # Giả lập lỗi
+        raise ValueError("❌ Lỗi xảy ra!")
+    except Exception as exc:
+        print(f"🔄 Task retry lần {self.request.retries + 1}...")  
+        raise self.retry(exc=exc, countdown=5)  
+```
+📌 **Giải thích:**  
+- Nếu task gặp lỗi, nó sẽ **tự động retry tối đa 3 lần**.  
+- `self.request.retries` giúp kiểm tra số lần retry hiện tại.  
+- `countdown=5` đảm bảo mỗi lần retry cách nhau **5 giây**.  
+
+---
+
+## 🔹 **4. Ứng dụng `self.request` trong thực tế**
+✅ **Ghi log thông tin task** để debug.  
+✅ **Theo dõi số lần retry** để xử lý lỗi tốt hơn.  
+✅ **Xác định queue hoặc worker đang thực thi** để điều phối task.  
+
+Bạn có muốn thử áp dụng `self.request` vào một trường hợp cụ thể không? 🚀
+
+
+### 📌 **Semipredicates trong Celery**
+
+Trong Celery, **semipredicates** là một khái niệm liên quan đến cách định nghĩa các điều kiện trong **retry** của task (thử lại khi có lỗi). Chúng được sử dụng để **kiểm tra các lỗi cụ thể** có nên retry task hay không.
+
+---
+
+## 🔹 **1. Khái niệm về Semipredicates**
+
+**Semipredicates** là một cách đơn giản để **xác định điều kiện** khi một task gặp lỗi và quyết định xem có nên retry (thử lại) hay không. Celery cho phép bạn sử dụng **các predicate (biểu thức logic)** để kiểm tra loại lỗi mà task gặp phải và chỉ retry trong trường hợp lỗi đó là một lỗi cụ thể.
+
+---
+
+## 🔹 **2. Cách sử dụng Semipredicates**
+
+Semipredicates giúp bạn chỉ retry các task khi gặp lỗi mà bạn **có thể kiểm soát được**, thay vì retry tất cả các lỗi. Cách này giúp tránh retry vô hạn đối với các lỗi không phải là vấn đề tạm thời, như lỗi không tìm thấy file hoặc lỗi hệ thống nghiêm trọng.
+
+### 📌 **Ví dụ: Chỉ retry khi gặp lỗi `ConnectionError`**
+```python
+from celery import Celery
+from celery.exceptions import SoftTimeLimitExceeded
+from time import sleep
+
+app = Celery('tasks', broker='redis://localhost:6379/0')
+
+@app.task(bind=True, max_retries=3, autoretry_for=(ConnectionError,))
+def fetch_data(self):
+    try:
+        # Giả lập lỗi kết nối
+        raise ConnectionError("🔌 Mất kết nối mạng!")
+    except ConnectionError as exc:
+        print(f"🔄 Retry vì lỗi: {exc}")
+        raise self.retry(exc=exc, countdown=5)  # Retry sau 5 giây
+```
+
+### 🔹 **Giải thích**:
+- **`autoretry_for=(ConnectionError,)`**: Chỉ retry khi gặp lỗi `ConnectionError`.
+- **`self.retry()`**: Thử lại sau 5 giây nếu gặp lỗi `ConnectionError`.
+- **`max_retries=3`**: Retry tối đa 3 lần.
+
+---
+
+## 🔹 **3. Định nghĩa Semipredicate Tùy chỉnh**
+
+Celery cũng hỗ trợ việc tạo ra **semipredicate tùy chỉnh**. Thay vì chỉ retry khi gặp một loại lỗi nhất định, bạn có thể định nghĩa một predicate của riêng bạn để kiểm tra lỗi.
+
+### 📌 **Ví dụ: Semipredicate tùy chỉnh**
+```python
+def custom_predicate(exc):
+    # Retry chỉ khi lỗi là "Mất kết nối"
+    return isinstance(exc, ConnectionError) or isinstance(exc, TimeoutError)
+
+@app.task(bind=True, max_retries=3, autoretry_for=(Exception,), retry_kwargs={'max_retries': 3})
+def fetch_with_custom_predicate(self):
+    try:
+        raise ConnectionError("Lỗi kết nối!")
+    except Exception as exc:
+        if custom_predicate(exc):
+            print(f"Retrying due to error: {exc}")
+            raise self.retry(exc=exc, countdown=5)
+        else:
+            print(f"Not retrying due to error: {exc}")
+            raise exc  # Không retry nếu không phải lỗi cần retry
+```
+
+### 🔹 **Giải thích**:
+- **`custom_predicate(exc)`**: Hàm tùy chỉnh kiểm tra loại lỗi. Nó chỉ trả về `True` khi gặp `ConnectionError` hoặc `TimeoutError`.
+- **`autoretry_for=(Exception,)`**: Tất cả các loại lỗi đều sẽ thử lại, nhưng predicate tùy chỉnh quyết định có retry hay không.
+- **`retry(exc=exc, countdown=5)`**: Retry sau 5 giây nếu predicate trả về `True`.
+
+---
+
+## 🔹 **4. Lợi ích của Semipredicates**
+- **Kiểm soát linh hoạt**: Bạn có thể chỉ retry những lỗi tạm thời (ví dụ: mất kết nối, lỗi timeout) thay vì retry tất cả các lỗi.
+- **Giảm thiểu việc retry không cần thiết**: Tránh retry các lỗi nghiêm trọng mà không có khả năng phục hồi.
+- **Tăng hiệu suất hệ thống**: Khi không retry các lỗi không cần thiết, bạn giảm tải cho hệ thống.
+
+---
+
+## 🔹 **5. Kết luận**
+**Semipredicates** giúp bạn **tinh chỉnh quá trình retry** trong Celery, chỉ retry khi gặp các lỗi tạm thời hoặc những lỗi có thể phục hồi được, giúp tránh retry các lỗi không cần thiết và tối ưu hiệu suất của hệ thống.
+
+Nếu bạn muốn retry task một cách thông minh, **semipredicates** là công cụ hữu ích cho bạn để **kiểm soát** lỗi và retry một cách chính xác.
+
+Bạn có muốn thử áp dụng semipredicates trong dự án của mình để retry task một cách linh hoạt hơn không? 🚀
