@@ -92,6 +92,8 @@ print(user.name, user.age)  # Lan 30
 ### 4. Các tính năng chính (Key Features)
 
 #### a. Lazy Attributes (Thuộc tính lười biếng)
+LazyAttribute được dùng để tạo giá trị động cho một field trong factory, dựa trên các field khác của object đó.
+LazyFunction(...): Dùng khi bạn chỉ cần tạo giá trị ngẫu nhiên, không phụ thuộc field nào.
 - Tạo giá trị động bằng hàm:
 ```python
 class UserFactory(factory.Factory):

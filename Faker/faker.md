@@ -1,8 +1,4 @@
-Dưới đây là hướng dẫn chi tiết bằng tiếng Việt về thư viện **Faker** dựa trên thông tin từ trang https://pypi.org/project/Faker/. Tôi sẽ giải thích cách cài đặt, sử dụng cơ bản, và các tính năng chính của Faker, kèm theo ví dụ cụ thể để bạn dễ hiểu và áp dụng, đặc biệt trong ngữ cảnh lập trình Python và kiểm thử (testing).
-
----
-
-### Tổng quan về Faker
+# Tổng quan về Faker
 
 **Faker** là một thư viện Python dùng để tạo dữ liệu giả (fake data) một cách nhanh chóng và thực tế. Nó rất hữu ích trong kiểm thử, phát triển ứng dụng, hoặc điền dữ liệu mẫu.
 
