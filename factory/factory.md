@@ -1,8 +1,4 @@
-Dưới đây là hướng dẫn chi tiết bằng tiếng Việt về nội dung của tài liệu **Factory Boy** tại https://factoryboy.readthedocs.io/en/latest/. Đây là tài liệu chính thức của **Factory Boy**, một thư viện Python dùng để tạo dữ liệu mẫu (test fixtures) cho kiểm thử (testing). Tôi sẽ giải thích từng phần chính, kèm ví dụ cụ thể để bạn dễ hiểu và áp dụng, đặc biệt trong bối cảnh tích hợp với Django (vì bạn đã hỏi về Django trước đó).
-
----
-
-### Tổng quan về Factory Boy
+# Tổng quan về Factory Boy
 
 **Factory Boy** là một thư viện giúp tạo dữ liệu mẫu nhanh chóng và linh hoạt cho các bài kiểm thử. Nó thay thế việc tạo dữ liệu thủ công hoặc dùng fixtures tĩnh (như JSON) bằng cách cung cấp các "factory" (nhà máy) để sinh dữ liệu động.
 
@@ -25,7 +21,7 @@ Dưới đây là hướng dẫn chi tiết bằng tiếng Việt về nội dun
 
 #### Tại sao dùng Factory Boy?
 - Dễ dàng tạo dữ liệu phức tạp.
-- Tự động hóa việc tạo dữ liệu liên quan (related objects).
+- Tự động hóa việc tạo dữ liệu quan he (related objects).
 - Linh hoạt hơn fixtures tĩnh.
 
 ---
@@ -51,7 +47,7 @@ print(factory.__version__)  # Ví dụ: 3.3.0
 
 ---
 
-### 3. Cách sử dụng cơ bản (Getting Started)
+### 3. Getting Started
 
 #### Tạo Factory cơ bản
 - Factory là một lớp kế thừa từ `factory.Factory`, định nghĩa cách tạo đối tượng.
