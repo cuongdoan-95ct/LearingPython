@@ -1,10 +1,6 @@
-Tôi hiểu rằng bạn muốn học chi tiết toàn bộ nội dung của phần **"Caching in Django"** trong tài liệu Django 5.1 tại https://docs.djangoproject.com/en/5.1/topics/cache/#. Tôi sẽ giải thích từng mục con trong tài liệu này bằng tiếng Việt, bao gồm tất cả các khía cạnh từ thiết lập, sử dụng cache cấp thấp, cache template, đến cache view và các tùy chọn nâng cao. Tôi sẽ cung cấp ví dụ cụ thể để minh họa từng phần.
-
----
-
 ### Tổng quan về "Caching in Django"
 
-Phần này trong tài liệu Django 5.1 giải thích cách sử dụng hệ thống cache để tăng hiệu suất ứng dụng. Cache giúp lưu trữ tạm thời dữ liệu để tránh lặp lại các tác vụ tốn tài nguyên như truy vấn database.
+Cache giúp lưu trữ tạm thời dữ liệu để tránh lặp lại các tác vụ tốn tài nguyên như truy vấn database.
 
 #### Nội dung chính:
 1. **Setting up the cache** (Thiết lập cache)
@@ -100,8 +96,20 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'site_cache'
 def blog_home(request):
     posts = Post.objects.all()
     return render(request, 'blog/home.html', {'posts': posts})
+
+
+class ProductListView(ListView):
+    """
+    Product list view
+    """
+
+    template_name = "product/list.html"
+    model = Product
+    context_object_name = "product_list"
+    cache_key = "product_list"
+
 ```
-- Truy cập `/`, response được cache 10 phút. Các request sau trả thẳng từ cache.
+- Truy cập `/products`, response được cache 10 phút. Các request sau trả thẳng từ cache.
 
 #### Lưu ý
 - Chỉ cache response với mã trạng thái 200 và method GET.
@@ -240,6 +248,17 @@ urlpatterns = [
 {% endcache %}
 ```
 - Key cache sẽ khác nhau cho mỗi `user.id`.
+
+---
+
+
+#### 📊 So sánh tổng quan
+
+| Loại cache             | Phạm vi         | Ưu điểm                               | Nhược điểm                              | Dùng khi nào?                        |
+|------------------------|------------------|----------------------------------------|------------------------------------------|--------------------------------------|
+| **Per-site**           | Toàn bộ trang    | Cực nhanh, đơn giản                   | Không cá nhân hoá                        | Trang blog, tin tức, public pages    |
+| **Per-view**           | Từng URL/view    | Kiểm soát tốt hơn, dễ hiểu            | Không phù hợp cho nội dung cá nhân hoá  | Trang danh sách, top sản phẩm        |
+| **Fragment**           | Một phần template| Linh hoạt, giữ phần động               | Phức tạp nếu data vẫn query trong view  | Sidebar, danh mục, top 10, menu      |
 
 ---
 

@@ -17,7 +17,7 @@
 ### 1. Giới thiệu về Cache trong Django
 
 #### Cache là gì?
-- Cache lưu trữ kết quả của các tác vụ tốn tài nguyên (như truy vấn database) để sử dụng lại thay vì tính toán lại.
+- Cache lưu trữ kết quả của các tác vụ tốn tài nguyên (như truy vấn database, get data from thirst party service) để sử dụng lại thay vì tính toán lại.
 - Django hỗ trợ nhiều backend cache như Memcached, Redis, database, file, hoặc bộ nhớ cục bộ.
 
 #### Tại sao cần thiết lập Cache?
