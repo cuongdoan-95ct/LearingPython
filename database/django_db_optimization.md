@@ -99,6 +99,15 @@ list(products)  # Thực thi
 print(len(connection.queries))  # 1
 ```
 
+#### Using **With**
+[Link](./with_tamplate_tag.md)
+
+#### Using **iterator**
+[link](./iterator.md)
+
+#### Using **explain**
+[link](./explain.md)
+
 #### Lưu ý
 - Tránh lặp lại QuerySet trong vòng lặp, gây nhiều truy vấn.
 
@@ -129,6 +138,50 @@ total = sum(p.price for p in Product.objects.all())
 # Tối ưu: Dùng DB
 total = Product.objects.aggregate(Sum('price'))['price__sum']
 ```
+
+#### Cập nhật hàng loạt
+
+```python
+#Cách không tốt
+# Lấy tất cả, cập nhật từng cái trong Python
+for item in Item.objects.filter(category='Books'):
+    item.price *= 0.9  # Giảm giá 10%
+    item.save()
+```
+
+```python
+# Cách tốt
+# Database cập nhật hàng loạt 1 lần
+Item.objects.filter(category='Books').update(price=F('price')*0.9)
+```
+
+#### Các Phương Thức Hữu Ích
+
+1. **`F()` expressions**: Để tham chiếu đến giá trị trường trong câu lệnh update
+   ```python
+   from django.db.models import F
+   Entry.objects.update(number_of_comments=F('number_of_comments') + 1)
+   ```
+
+2. **`aggregate()`**: Để tính toán các giá trị tổng hợp
+   ```python
+   from django.db.models import Avg, Max, Min
+   Book.objects.aggregate(Avg('price'), Max('price'), Min('price'))
+   ```
+
+3. **`annotate()`**: Để thêm các trường tính toán vào từng bản ghi
+   ```python
+   from django.db.models import Count
+   q = Blog.objects.annotate(Count('entry'))
+   ```
+
+#### Lợi Ích Khi Thực Hiện Trong Database
+
+1. **Hiệu suất cao hơn**: Giảm lượng dữ liệu truyền giữa ứng dụng và database
+2. **Tận dụng index**: Các phép tính trong database có thể sử dụng index
+3. **Giảm bộ nhớ sử dụng**: Ứng dụng không phải lưu trữ nhiều dữ liệu tạm thời
+4. **Atomicity**: Các thao tác phức tạp có thể được thực hiện trong một transaction
+
 
 #### Lưu ý
 - DB thường nhanh hơn Python cho các phép toán lớn.
@@ -223,6 +276,27 @@ products = Product.objects.defer('price')  # Tải hết trừ price
 
 #### Lưu ý
 - `only()` và `defer()` vẫn tải ID, cẩn thận khi dùng.
+
+
+#### Tránh dùng `count()` hoặc `exists()` nếu không cần thiết**  
+
+- **`count()`**: Tốt khi bạn chỉ cần đếm số lượng bản ghi.  
+- **`exists()`**: Tốt khi chỉ cần kiểm tra sự tồn tại.  
+
+```python
+# Tốt
+# Kiểm tra nếu có bất kỳ Entry nào → dùng exists() thay vì count() > 0
+if Entry.objects.filter(headline__contains="Django").exists():
+    print("Có bài viết về Django!")
+```
+
+```python
+# Không tốt
+# Truy vấn đếm tất cả bản ghi trong khi chỉ cần biết có tồn tại hay không
+
+if Entry.objects.filter(headline__contains="Django").count() > 0:
+    print("Có bài viết về Django!")
+```
 
 ---
 
