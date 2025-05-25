@@ -191,3 +191,67 @@ sequenceDiagram
         BE-->>App: Return data
         App-->>Instructor: Display error
     end
+
+
+# Notification list/ detail sequence diagram
+sequenceDiagram
+    participant User
+    participant App
+    participant BE as Backend
+    participant Database
+
+    User->>App: Access notifications page
+    App->>BE: Call API get notification list
+    BE->>Database: Make query get notifications data
+    Database-->>BE: Notifications data
+    BE-->>App: Notifications data
+    App-->>User: Display notification list
+
+    alt Select a notification
+        User->>App: Select a notification
+        App->>BE: Call API get notification
+        BE->>Database: Make query to get notification
+        Database-->>BE: Notification data
+        BE-->>App: Notification data
+        App-->>User: Display notification
+    end
+
+# Verify reset password sequence diagram
+sequenceDiagram
+    participant Anonymous
+    participant App
+    participant BE as Backend
+
+    Anonymous->>App: Access verify reset password screen
+    App->>BE: Send data
+    BE->>BE: Validate data
+
+    alt Valid data
+        BE->>BE: Send token to email
+        BE-->>App: Successfully
+        App-->>Anonymous: Successfully
+    else Invalid data
+        BE-->>App: Return error
+        App-->>Anonymous: Display error
+    end
+
+# Reset password sequence diagram
+sequenceDiagram
+    participant Anonymous
+    participant App
+    participant BE as Backend
+    participant Database
+
+    Anonymous->>App: Access reset password screen
+    App->>BE: Send token
+    BE->>BE: Validate token
+
+    alt Valid data
+        BE->>Database: Update user password
+        Database-->>BE: Successfully
+        BE-->>App: Successfully
+        App-->>Anonymous: Successfully
+    else Invalid data
+        BE-->>App: Return invalid token
+        App-->>Anonymous: Display error
+    end
