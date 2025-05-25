@@ -1,0 +1,3 @@
+-  {{text}}: hình bình hành (dùng cho input/output) được biểu diễn bằng cú pháp.
+-  [/text/]: Hình oval (hay hình tròn) thực ra là dùng để biểu thị một hành động hoặc một bước xử lý chung trong một số biểu đồ luồng khác, hoặc đôi khi được dùng để mô tả start/end tùy theo phong cách.
+-  
