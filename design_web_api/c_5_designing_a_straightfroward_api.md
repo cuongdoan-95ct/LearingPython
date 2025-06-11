@@ -12,7 +12,7 @@ Phần này tập trung vào cách lựa chọn tên, định dạng dữ liệu
 
 *   **5.1.3 Chọn dữ liệu sẵn sàng sử dụng (Choosing Ready-to-Use Data)**
     API nên cung cấp dữ liệu liên quan và hữu ích, vượt ra ngoài dữ liệu cơ bản. Việc cung cấp dữ liệu giúp người dùng hiểu và tránh công việc xử lý thêm phía người dùng là rất quan trọng.
-    **Ví dụ:** Nếu bạn phải sử dụng một danh pháp bằng số cho loại tài khoản (ví dụ: 1 cho tài khoản tiết kiệm, 2 cho tài khoản vãng lai), hãy cung cấp thêm một thuộc tính `typeName` với giá trị chuỗi tương ứng (`savings` hoặc `checking`). Thay vì cung cấp ngày tạo tài khoản (`creationDate`), hãy cung cấp trực tiếp số năm tài khoản đã mở (`age`) nếu đó là thông tin người dùng thực sự cần. Đối với URL tài nguyên, sử dụng các giá trị có ý nghĩa và dễ đọc như số tài khoản (`/accounts/0001234567`) thay vì các UUID khó hiểu (`/accounts/473e3283-a3b3-4941-aa48-d8163ead9ffc`).
+    **Ví dụ:** Nếu bạn phải sử dụng một danh pháp bằng số cho loại tài khoản (ví dụ: 1 cho tài khoản tiết kiệm, 2 cho tài khoản vãng lai), hãy cung cấp thêm một thuộc tính `typeName` với giá trị chuỗi tương ứng (`savings` hoặc `checking`). Thay vì cung cấp ngày tạo tài khoản (`creationDate`), hãy cung cấp trực tiếp số năm tài khoản đã mở (`age`) nếu người dùng muốn biết tài khoản đã được tạo bao nhiêu năm. Đối với URL tài nguyên, sử dụng các giá trị có ý nghĩa và dễ đọc như số tài khoản (`/accounts/0001234567`) thay vì các UUID khó hiểu (`/accounts/473e3283-a3b3-4941-aa48-d8163ead9ffc`).
 
 **5.2 Thiết kế tương tác rõ ràng (Designing Straightforward Interactions)**
 
