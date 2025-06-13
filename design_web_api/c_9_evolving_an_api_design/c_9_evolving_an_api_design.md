@@ -11,7 +11,7 @@ Thiết kế các tiến hóa API đòi hỏi sự cẩn trọng đặc biệt �
     *   **Thay đổi đặc điểm thuộc tính** (Modifying (decreasing) characteristics): Ví dụ, giảm độ dài tối đa của một chuỗi hoặc số lượng mục tối đa trong một mảng có thể gây lỗi nếu người dùng đã quen với việc gửi dữ liệu lớn hơn.
     *   **Xóa giá trị khỏi enum** (Removing values from enums): Nếu một giá trị hợp lệ trước đây bị xóa khỏi danh sách các giá trị enum, người dùng cũ sẽ gặp lỗi khi cố gắng gửi hoặc nhận giá trị đó.
     *   **Thêm giá trị mới vào enum** (Adding new values to enum): Mặc dù việc này có vẻ tương thích ngược, nhưng ứng dụng người dùng có thể không giải thích được các giá trị mới hoặc bị lỗi khi gặp chúng.
-    *   **Cách an toàn để thay đổi dữ liệu đầu ra**: Cách an toàn nhất là **chỉ thêm các thuộc tính mới**. Nếu cần sửa lỗi thiết kế cũ, bạn có thể **thêm một thuộc tính mới để chỉ ra một tình trạng đặc biệt** (ví dụ: `communityCategorization` boolean) hoặc **thêm một thuộc tính mở rộng** (`extendedCategoryStatus`) chứa dữ liệu cũ và mới.
+    *   **Cách an toàn để thay đổi dữ liệu đầu ra**: Cách an toàn nhất là **chỉ thêm các thuộc tính mới**. Nếu cần sửa lỗi thiết kế cũ, bạn có thể **thêm một thuộc tính mới để chỉ ra một tình trạng đặc biệt** (ví dụ: `communityCategorization` boolean) hoặc **thêm một thuộc tính mở rộng** (`extendedCategoryStatus`) chứa dữ liệu cũ và mới. Nếu cần xóa thuộc tính, đánh dấu nó là deprecated (khuyến cáo không dùng nữa) trong tài liệu OpenAPI Specification (OAS):
 
 *   **Tránh các thay đổi gây lỗi đối với dữ liệu đầu vào và tham số (Avoiding breaking changes to input data and parameters)**:
     *   **Đổi tên thuộc tính** (Renaming a property): Người dùng gửi tên cũ sẽ nhận lỗi 400 Bad Request.
@@ -21,21 +21,24 @@ Thiết kế các tiến hóa API đòi hỏi sự cẩn trọng đặc biệt �
     *   **Xóa giá trị khỏi enum** (Removing values from enums): Người dùng gửi giá trị cũ sẽ gặp lỗi.
     *   **Thay đổi ý nghĩa của thuộc tính** (Changing a property's meaning): Có thể gây ra hậu quả nghiêm trọng cho nhà cung cấp, vì họ có thể xử lý dữ liệu sai.
     *   **Thêm một thuộc tính bắt buộc mới** (Adding a mandatory property): Các yêu cầu của người dùng cũ sẽ thiếu thuộc tính này và sẽ gặp lỗi.
-    *   **Cách an toàn để thay đổi dữ liệu đầu vào**: Cách an toàn nhất là **chỉ thêm các thuộc tính tùy chọn**. Bạn cũng có thể biến một **thuộc tính bắt buộc hiện có thành tùy chọn**, hoặc **tăng đặc điểm của thuộc tính** (ví dụ: tăng giới hạn tối đa hoặc độ dài tối đa).
+    *   **Cách an toàn để thay đổi dữ liệu đầu vào**: Cách an toàn nhất là **chỉ thêm các thuộc tính tùy chọn**. Bạn cũng có thể biến một **thuộc tính bắt buộc hiện có thành tùy chọn**, hoặc **tăng đặc điểm của thuộc tính** (ví dụ: tăng giới hạn tối đa hoặc độ dài tối đa). Đánh dấu nó là deprecated (khuyến cáo không dùng nữa) trong tài liệu OpenAPI Specification (OAS):
 
 *   **Tránh các thay đổi gây lỗi trong phản hồi thành công và lỗi (Avoiding breaking changes in success and error feedback)**:
     *   **Thay đổi cấu trúc dữ liệu lỗi** (Modifying error data structure): Ví dụ, đổi tên thuộc tính `error_message` thành `message` trong phản hồi lỗi có thể khiến ứng dụng người dùng không thể phân tích cú pháp hoặc hiển thị lỗi đúng cách.
     *   **Thay đổi mã trạng thái HTTP** (Modifying HTTP status codes): Ví dụ, nếu API thay đổi trạng thái 400 Bad Request sang 404 Not Found cho cùng một loại lỗi, người dùng có thể không xử lý lỗi đúng cách.
     *   **Thay đổi ý nghĩa của mã trạng thái HTTP** (Changing HTTP status code meaning): Sử dụng 200 OK cho một phản hồi lỗi là một thay đổi gây lỗi, vì người dùng sẽ nghĩ rằng yêu cầu đã thành công.
+    *   **Giải pháp** Giữ mã trạng thái và cấu trúc phản hồi ổn định, hoặc cung cấp các phản hồi bổ sung mà không xóa phản hồi cũ.
 
 *   **Tránh các thay đổi gây lỗi đối với mục tiêu và luồng (Avoiding breaking changes to goals and flows)**:
     *   **Đổi tên hoặc xóa mục tiêu** (Renaming or removing goals): Ví dụ, đổi tên tài nguyên `transfers` thành `money-transfers` hoặc xóa phương thức GET cho tài nguyên `transfer` sẽ dẫn đến lỗi 404 Not Found hoặc 405 Method Not Allowed.
     *   **Thêm mục tiêu bắt buộc mới vào luồng** (Adding a new mandatory goal to a flow): Nếu một bước mới bắt buộc được thêm vào luồng (ví dụ: xác thực bằng OTP sau khi tạo chuyển khoản), người dùng cũ sẽ không thực hiện bước đó và không thể hoàn thành mục tiêu, ngay cả khi giao diện không thay đổi. Đây là **thay đổi gây lỗi im lặng** (silent breaking change) vì không có lỗi rõ ràng nào được trả về.
+    *   **Giải pháp** Giữ các mục tiêu và luồng cũ hoạt động, đồng thời cung cấp các mục tiêu hoặc luồng mới nếu cần.
 
 *   **Tránh các vi phạm bảo mật và thay đổi gây lỗi (Avoiding security breaches and breaking changes)**:
     *   **Thay đổi cách thức lấy token** (Modifying how tokens are acquired): Nếu quy trình xác thực token thay đổi (ví dụ: từ OAuth 1 sang OAuth 2), tất cả các ứng dụng người dùng sẽ cần cập nhật.
     *   **Xóa thông tin nhạy cảm khỏi token truy cập** (Removing sensitive data from access tokens): Nếu ID người dùng cuối (end user ID) bị xóa khỏi dữ liệu đính kèm trong token truy cập, hệ thống triển khai có thể hiểu sai quyền của người dùng, dẫn đến vi phạm bảo mật hoặc lỗi máy chủ.
     *   **Thay đổi phạm vi (scopes)**: Thay đổi phạm vi (ví dụ: đổi tên `beneficiary:create` thành `beneficiary:add`) có thể gây ra lỗi cho người dùng cũ hoặc cấp quyền không mong muốn.
+    *   **Giải pháp** Hỗ trợ cơ chế cũ trong thời gian chuyển đổi, thông báo với người dùng về sự thay đổi, sau thời gian chuyển đổi, bắt buộc sử dụng những thay đổi mới.
 
 *   **Lưu ý về hợp đồng giao diện vô hình (Being aware of the invisible interface contract)**:
     *   Người dùng API có thể dựa vào các **hành vi có thể quan sát được của hệ thống** không được mô tả rõ ràng trong tài liệu. Ví dụ, người dùng có thể giả định rằng một trường chuỗi có độ dài tối đa dựa trên dữ liệu họ đã nhận được, và nếu độ dài đó tăng lên, ứng dụng của họ có thể gặp lỗi.

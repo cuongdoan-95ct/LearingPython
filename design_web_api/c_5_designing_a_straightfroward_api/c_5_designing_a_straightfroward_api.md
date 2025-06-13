@@ -1,6 +1,5 @@
 **5.1 Thiết kế các biểu diễn rõ ràng (Designing Straightforward Representations)**
-
-Phần này tập trung vào cách lựa chọn tên, định dạng dữ liệu và bản thân dữ liệu để nâng cao hoặc làm giảm khả năng sử dụng của API. Giống như các vật dụng hàng ngày, cách các khái niệm và thông tin được biểu diễn có thể ảnh hưởng lớn đến trải nghiệm người dùng.
+* Phần này tập trung vào cách lựa chọn tên, định dạng dữ liệu và bản thân dữ liệu để nâng cao hoặc làm giảm khả năng sử dụng của API. Giống như các vật dụng hàng ngày, cách các khái niệm và thông tin được biểu diễn có thể ảnh hưởng lớn đến trải nghiệm người dùng.
 
 *   **5.1.1 Chọn tên rõ ràng (Choosing Crystal-Clear Names)**
     Tên khó hiểu, từ vựng không quen thuộc hoặc viết tắt khó hiểu có thể làm một vật dụng hoặc một API trở nên hoàn toàn khó hiểu. Khi thiết kế API, bạn cần đặt tên cho đầu vào, đầu ra, tài nguyên, phản hồi, tham số và các thuộc tính (properties) trong đó.
