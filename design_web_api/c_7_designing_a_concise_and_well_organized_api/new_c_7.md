@@ -1,7 +1,3 @@
-Below is a detailed explanation of **Chapter 7: Designing a Concise and Well-Organized API** from the book *"The Design of Web APIs"* by Arnaud Lauret, translated into Vietnamese. I will cover the content thoroughly, section by section, and include examples to illustrate the concepts. The explanation will follow the structure of the chapter and provide practical insights to help you understand the details.
-
----
-
 # Chương 7: Thiết Kế Một API Gọn Gàng và Có Tổ Chức Tốt
 
 Chương 7 tập trung vào việc làm thế nào để thiết kế một API không chỉ dễ hiểu mà còn dễ sử dụng thông qua việc tổ chức và định cỡ các thành phần của API một cách hợp lý. Một API được tổ chức tốt sẽ giúp người dùng (nhà phát triển hoặc phần mềm tiêu thụ API) nhanh chóng nắm bắt cách hoạt động của nó và sử dụng nó một cách hiệu quả. Chương này được chia thành hai phần chính: **Tổ chức API** và **Định cỡ API**. Mỗi phần sẽ được giải thích chi tiết dưới đây, kèm theo ví dụ minh họa.

@@ -1,7 +1,3 @@
-Chương 4 này tập trung vào việc **sử dụng một công cụ có cấu trúc như định dạng mô tả API để mô tả chính xác giao diện lập trình** của API, sau khi bạn đã xác định mục tiêu của API và thiết kế giao diện lập trình cơ bản dựa trên các mục tiêu đó ở các chương trước.
-
-Việc sử dụng một định dạng mô tả chuẩn hóa như vậy mang lại nhiều lợi ích.
-
 Chương 4 bao gồm các phần sau:
 
 1.  **Định dạng mô tả API là gì?** (What is an API description format?)

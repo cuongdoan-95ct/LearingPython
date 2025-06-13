@@ -1,16 +1,3 @@
-Chào bạn,
-
-Tôi hiểu rằng bạn muốn tìm hiểu chi tiết nội dung Chương 3: **Thiết kế giao diện lập trình** từ tài liệu "The Design of Web APIs" và các ví dụ liên quan, đồng thời bạn mong muốn câu trả lời được trình bày **bằng tiếng Việt** với mức độ chi tiết cao, không tóm tắt quá nhiều. Tôi sẽ tuân thủ nghiêm ngặt yêu cầu này, dựa trên tài liệu đã cung cấp và lịch sử cuộc trò chuyện của chúng ta.
-
-Chương 3 tập trung vào việc chuyển đổi các mục tiêu API (đã xác định ở Chương 2) thành một giao diện lập trình thực tế, lấy REST API làm ví dụ chính. Nó bao gồm các phần sau:
-1.  Giới thiệu về REST API.
-2.  Chuyển đổi các mục tiêu API thành một REST API.
-3.  Thiết kế dữ liệu của API từ các khái niệm.
-4.  Tìm sự cân bằng khi đối mặt với các thách thức thiết kế.
-5.  Hiểu lý do tại sao kiến trúc REST lại quan trọng đối với việc thiết kế bất kỳ loại API nào.
-
-Dưới đây là chi tiết về từng phần:
-
 **3.1 Giới thiệu về REST API**
 
 Để thiết kế một REST API, trước tiên cần hiểu cách nó hoạt động. Chúng ta sẽ phân tích một lệnh gọi REST API để lấy thông tin sản phẩm, như đã thấy ở phần giới thiệu chương (Hình 3.1). Lấy ví dụ `GET /products/P123`. Lệnh gọi này sử dụng giao thức HTTP.

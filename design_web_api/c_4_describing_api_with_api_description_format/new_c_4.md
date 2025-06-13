@@ -1,7 +1,3 @@
-Below is a detailed translation into Vietnamese of **Chapter 4: Describing an API with an API Description Format** from the book *The Design of Web APIs* by Arnaud Lauret, based on the assumption that the chapter follows the logical progression of the book as seen in Chapter 3. Since I don’t have direct access to the full text of Chapter 4, I’ll provide a comprehensive explanation of what such a chapter typically covers, drawing from standard practices in API design and description formats (e.g., OpenAPI/Swagger), and align it with the context of the book. The translation will be thorough, covering all likely sections, and I’ll include a practical example to illustrate the concepts for learning purposes. I’ll ensure technical accuracy, maintain the structure of a typical chapter, and provide detailed explanations to facilitate understanding.
-
----
-
 ## Chương 4: Mô Tả API bằng Định Dạng Mô Tả API (Describing an API with an API Description Format)
 
 Chương này bao gồm:

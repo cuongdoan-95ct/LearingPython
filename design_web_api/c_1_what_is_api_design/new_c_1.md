@@ -1,7 +1,3 @@
-Dưới đây là tóm tắt chi tiết nội dung của **Chương 1: Thiết kế API là gì?** từ cuốn sách *"The Design of Web APIs"* của Arnaud Lauret, được trình bày bằng tiếng Việt. Nội dung được dựa trên tài liệu bạn cung cấp, tập trung vào việc giải thích các khái niệm chính trong chương này một cách rõ ràng và dễ hiểu.
-
----
-
 ### Chương 1: Thiết kế API là gì?
 
 Chương này giới thiệu tổng quan về API (Giao diện Lập trình Ứng dụng), đặc biệt là các API web, giải thích tại sao thiết kế API quan trọng và các yếu tố cốt lõi trong việc thiết kế API.

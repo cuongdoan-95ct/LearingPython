@@ -1,5 +1,3 @@
-Dựa trên các nguồn cung cấp, đây là nội dung chi tiết của Chương 1: "Thiết kế API là gì?" (What is API design?), được trình bày bằng tiếng Việt, cùng với các ví dụ liên quan:
-
 **Chương 1: Thiết kế API là gì? (What is API design?)**
 
 Chương này khám phá API là gì, tại sao việc thiết kế nó lại quan trọng, và ý nghĩa của việc thiết kế API. Các API ứng dụng web (Web API) là nền tảng thiết yếu của thế giới kết nối hiện nay, giúp phần mềm giao tiếp với nhau, từ ứng dụng điện thoại đến các máy chủ backend ẩn sâu. Dù hệ thống dựa trên API có quy mô hay mục đích thế nào, việc thiết kế API luôn phải là mối quan tâm chính, vì sự thành công hay thất bại của hệ thống phụ thuộc trực tiếp vào chất lượng thiết kế của tất cả các API của nó.

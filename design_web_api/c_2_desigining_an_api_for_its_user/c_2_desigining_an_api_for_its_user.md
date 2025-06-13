@@ -1,5 +1,3 @@
-Chắc chắn rồi, tôi sẽ cung cấp chi tiết nội dung của chương 2: "Thiết kế API vì người dùng" từ các nguồn bạn đã cung cấp, bằng tiếng Việt.
-
 Chương 2 tập trung vào việc **thiết kế API từ góc độ của người dùng API**. Mục tiêu chính là tạo ra các API dễ hiểu và dễ sử dụng.
 
 Dưới đây là các chi tiết chính từ chương này:

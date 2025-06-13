@@ -73,7 +73,16 @@ Việc phân vùng API thành các nhóm mục tiêu (scopes) là cần thiết 
     *   Để tốt hơn, Lauret gợi ý dựa các scopes vào **"whats" (những gì người dùng có thể làm)** mà bạn đã xác định trong API goals canvas (Chương 2).
     *   **Ví dụ**: Thay vì scopes chi tiết, có thể có `manage transfers` hoặc `manage beneficiaries`.
 
-3.  **8.2.4 Xác định scopes với định dạng mô tả API (Defining scopes with the API description format)**
+3.  **8.2.3** Chọn chiến lược phạm vi (Trang 197-198)
+- **Mô tả**: Việc chọn giữa phạm vi chi tiết và thô phụ thuộc vào nhu cầu của API và người tiêu dùng. Một số chiến lược:
+  - **Phạm vi chi tiết**: Dùng cho các API công khai hoặc khi cần kiểm soát chặt chẽ.
+  - **Phạm vi thô**: Dùng cho các API nội bộ hoặc khi muốn đơn giản hóa.
+  - **Kết hợp**: Kết hợp cả hai để cân bằng giữa linh hoạt và đơn giản.
+- **Ví dụ**: API mạng xã hội có thể cung cấp cả hai:
+  - `transfers` (thô) cho các ứng dụng nội bộ.
+  - `transfers.read`, `transfers.craete` (chi tiết) cho các ứng dụng bên thứ ba.
+
+4.  **8.2.4 Xác định scopes với định dạng mô tả API (Defining scopes with the API description format)**
     *   **OpenAPI Specification (OAS)** cho phép bạn mô tả scopes.
     *   Scopes được định nghĩa trong phần `components.securitySchemes` của tài liệu OAS, với `type` là `oauth2` và mô tả các `flows` (ví dụ: `implicit`) và danh sách `scopes` với tên và mô tả.
     *   **Ví dụ**:

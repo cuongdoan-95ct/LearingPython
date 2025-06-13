@@ -1,7 +1,3 @@
-Dưới đây là nội dung chi tiết của **Chương 8: Thiết kế một API an toàn** từ cuốn sách *The Design of Web APIs* của Arnaud Lauret, được giải thích bằng tiếng Việt một cách rõ ràng và chi tiết. Tôi sẽ trình bày từng phần của chương, bao gồm các khái niệm, ví dụ cụ thể và các bước thiết kế để đảm bảo bạn hiểu rõ nội dung. Tôi cũng sẽ cung cấp các ví dụ minh họa để làm rõ các khái niệm.
-
----
-
 # Chương 8: Thiết kế một API an toàn
 
 Chương 8 tập trung vào việc thiết kế các API web với trọng tâm là bảo mật, một yếu tố quan trọng để đảm bảo rằng API không chỉ hoạt động tốt mà còn bảo vệ dữ liệu và hệ thống khỏi các mối đe dọa. Nội dung chương được chia thành các phần chính, bao gồm: tổng quan về bảo mật API, phân vùng API để kiểm soát truy cập, thiết kế với kiểm soát truy cập, xử lý dữ liệu nhạy cảm, và xác định các vấn đề về kiến trúc và giao thức. Dưới đây là chi tiết từng phần.
