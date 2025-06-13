@@ -11,19 +11,43 @@ Thiết kế API bảo mật đòi hỏi bạn phải có hiểu biết cơ bả
     *   Trong quá trình đăng ký, nhà phát triển phải **chọn các "scopes" (phạm vi)** mà ứng dụng của họ sẽ sử dụng. Một scope tương ứng với một hoặc nhiều mục tiêu (goals) của API.
     *   **Ví dụ**: Ứng dụng "Boring Financial Dashboard" chỉ sử dụng scope `read accounts and transactions`, tương ứng với các mục tiêu `list accounts`, `read account`, và `list transactions`. Do đó, ứng dụng này chỉ được phép sử dụng ba mục tiêu đó. Trong khi đó, ứng dụng "Awesome Banking Application" sử dụng tất cả các scopes và được phép sử dụng tất cả các mục tiêu của API.
     *   Sau khi cấu hình, nhà phát triển sẽ nhận được một **Client ID** cho ứng dụng của họ, được sử dụng trong các bước tiếp theo.
+2.  **8.1.2** Nhận thông tin xác thực
+    - **Mô tả**: Sau khi có *client ID* và *client secret*, ứng dụng cần liên hệ với **máy chủ ủy quyền (authorization server)** để nhận *access token*. *Access token* là một chuỗi ký tự tạm thời, cho phép ứng dụng truy cập API trong một khoảng thời gian nhất định.
+    - **Quy trình**:
+      1. Ứng dụng gửi yêu cầu đến máy chủ ủy quyền, kèm theo *client ID* và *client secret*.
+      2. Máy chủ xác minh thông tin xác thực và trả về *access token* nếu hợp lệ.
+      3. *Access token* thường có thời hạn (ví dụ: 1 giờ) và có thể được làm mới (refresh) nếu cần.
+    - **Ví dụ**: Tiếp tục ví dụ trên, ứng dụng di động của bạn gửi một yêu cầu HTTP đến máy chủ ủy quyền của mạng xã hội:
+      ```http
+      POST /oauth/token HTTP/1.1
+      Host: api.socialnetwork.com
+      Content-Type: application/x-www-form-urlencoded
 
-2.  **8.1.3 Thực hiện cuộc gọi API (Making an API call)**
+      grant_type=client_credentials&client_id=abc123&client_secret=xyz789
+      ```
+      Máy chủ trả về:
+      ```json
+      {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "token_type": "Bearer",
+        "expires_in": 3600
+      }
+      ```
+      *Access token* này sẽ được sử dụng để gọi API.
+
+3.  **8.1.3 Thực hiện cuộc gọi API (Making an API call)**
     *   Để thực hiện cuộc gọi API, người dùng (consumer) phải gửi một yêu cầu tới API (qua một kênh bảo mật) cùng với **"access token"** đã nhận được trước đó.
     *   Khi API nhận được yêu cầu, nó sẽ liên hệ với **"authorization server"** để xác thực access token.
     *   Nếu token hợp lệ, authorization server sẽ trả về dữ liệu đính kèm với nó, bao gồm **ID của người dùng cuối (end user's ID)**, Client ID và các scopes đã được cấp quyền.
     *   Triển khai API trước tiên kiểm tra xem mục tiêu được yêu cầu (ví dụ: `list accounts`) có thuộc một trong các scopes đã được cấp quyền cho ứng dụng hay không.
     *   Sau đó, dựa trên **ID của người dùng cuối đính kèm với access token**, việc triển khai sẽ lọc kết quả và chỉ trả về các tài khoản mà người dùng cuối đó được phép truy cập. Điều này đảm bảo rằng ngay cả khi ứng dụng có quyền truy cập rộng hơn, dữ liệu trả về vẫn được giới hạn cho người dùng cụ thể.
 
-3.  **8.1.4 Nhìn nhận thiết kế API từ góc độ bảo mật (Envisioning API design from the perspective of security)**
+4.  **8.1.4 Nhìn nhận thiết kế API từ góc độ bảo mật (Envisioning API design from the perspective of security)**
     *   **Kênh bảo mật**: Mọi giao tiếp giữa người dùng và nhà cung cấp nên diễn ra qua một kênh bảo mật để ngăn chặn việc đánh chặn dữ liệu. Tuy nhiên, điều này không liên quan trực tiếp đến thiết kế API mà là về hạ tầng.
     *   **Kiểm soát truy cập ứng dụng**: Chỉ những người dùng đã đăng ký mới được phép truy cập API, và họ chỉ nên được phép sử dụng những phần API mà họ thực sự cần và mà người dùng cuối đã cấp quyền.
         *   **Xác định scopes (a)**: Việc phân chia API thành các nhóm mục tiêu (scopes) để cấp quyền truy cập chọn lọc là công việc của nhà thiết kế API, bởi vì các nhóm mục tiêu này phải có ý nghĩa đối với cả nhà phát triển và người dùng cuối.
         *   **Điều chỉnh hành vi theo người dùng cuối (b)**: Việc triển khai cần biết người dùng cuối là ai để điều chỉnh hành vi của API theo quyền của người dùng cuối cụ thể. Nhà thiết kế API nên ghi nhớ điều này vì nó có thể ảnh hưởng đến thiết kế API.
+        *   **Nguyên tắc**: Sử dụng **least privilege principle** (nguyên tắc quyền tối thiểu), nghĩa là chỉ cấp quyền vừa đủ để thực hiện nhiệm vụ.
     *   **Xử lý tài liệu nhạy cảm (Sensitive material)**:
         *   **Dữ liệu nhạy cảm (c)**: Nhà thiết kế API phải xem xét liệu có nên thực sự hiển thị dữ liệu nhạy cảm qua API hay không.
         *   **Mục tiêu nhạy cảm (d)**: Tương tự, một số mục tiêu API có thể rất nhạy cảm (ví dụ: kích hoạt các hành động có hậu quả nghiêm trọng) và cần được xem xét cẩn thận.

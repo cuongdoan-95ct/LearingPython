@@ -1,0 +1,7 @@
+openapi: 3.0.4
+info:
+  title: Designing API example
+  description: |-
+    Designing API example for learning purposes.
+  version: 0.0.1
+paths: {}

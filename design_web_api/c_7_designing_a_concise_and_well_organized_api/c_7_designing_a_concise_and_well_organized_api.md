@@ -1,5 +1,3 @@
-Chào bạn, tôi sẽ cung cấp cho bạn thông tin chi tiết về Chương 7: "Thiết kế API ngắn gọn và có tổ chức tốt" (Designing a Concise and Well-Organized API) dựa trên các nguồn đã cung cấp và cuộc trò chuyện của chúng ta. Mục tiêu của chương này là giúp bạn thiết kế các API mà người dùng có thể dễ dàng hiểu và sử dụng, tránh gây choáng ngợp hoặc khó hiểu.
-
 ### **Chương 7: Thiết kế API ngắn gọn và có tổ chức tốt**
 
 Chương này tập trung vào hai khía cạnh chính để đảm bảo API của bạn dễ sử dụng: **tổ chức API** và **kích thước API**.
@@ -41,13 +39,11 @@ Giống như việc sắp xếp các nút trên một chiếc điều khiển TV
             }
             ```
 
-*   **7.1.2 Tổ chức phản hồi (Organizing Feedback)**
-    Một API có tổ chức tốt cung cấp phản hồi có tổ chức tốt.
-    *   Sử dụng **mã trạng thái HTTP** (HTTP status codes) thích hợp để cung cấp phản hồi có thông tin (ví dụ: `201 Created` cho tạo thành công, `202 Accepted` cho yêu cầu được chấp nhận nhưng xử lý sau, `400 Bad Request` cho lỗi yêu cầu).
-    *   Tổ chức phản hồi để tạo điều kiện thuận lợi cho việc giải thích bằng cách:
-        *   Tận dụng cách tổ chức phản hồi của giao thức cơ bản.
-        *   Tạo cách tổ chức phản hồi của riêng bạn.
-        *   **Sắp xếp nhiều lỗi từ quan trọng nhất đến ít quan trọng nhất**.
+*   **7.1.2 Tổ chức phản hồi (Organizing Feedback)**  
+    Phản hồi (feedback) bao gồm các phản hồi thành công (success feedback) và phản hồi lỗi (error feedback). Tổ chức phản hồi tốt đảm bảo rằng người dùng có thể dễ dàng xử lý các phản hồi từ API, bất kể kết quả là thành công hay thất bại.
+    1. **Phản Hồi Lỗi Nhất Quán**: Tất cả các lỗi nên được trả về theo một định dạng chung, bao gồm mã lỗi, thông báo, và chi tiết bổ sung nếu cần.
+
+    2. **Nhóm Các Lỗi Liên Quan**: Nếu một yêu cầu tạo ra nhiều lỗi (ví dụ, xác thực nhiều trường dữ liệu), hãy nhóm các lỗi này trong một danh sách để người dùng dễ xử lý. Sắp xếp nhiều lỗi từ quan trọng nhất đến ít quan trọng nhất.
         *   **Ví dụ**: Thay vì trả về từng lỗi một, API có thể trả về một phản hồi `400 Bad Request` chứa một danh sách tất cả các lỗi chi tiết, được sắp xếp theo mức độ nghiêm trọng:
             ```json
             {
@@ -70,7 +66,10 @@ Giống như việc sắp xếp các nút trên một chiếc điều khiển TV
                 }
               ]
             }
-            ```
+
+    3. **Phản Hồi Thành Công Rõ Ràng**: Phản hồi thành công nên bao gồm dữ liệu chính và bất kỳ siêu dữ liệu nào (metadata) cần thiết, như tổng số mục hoặc liên kết phân trang.
+
+    4. **Sử Dụng Mã Trạng Thái HTTP Phù Hợp**: Mã trạng thái HTTP (như 200 OK, 400 Bad Request) cần phản ánh đúng trạng thái của yêu cầu.
 
 *   **7.1.3 Tổ chức mục tiêu (Organizing Goals)**
     Các mục tiêu của API cũng cần được tổ chức tốt.
