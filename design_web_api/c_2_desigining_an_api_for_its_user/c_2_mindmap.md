@@ -1,4 +1,4 @@
-# Thiết kế API từ góc độ người dùng (Designing APIs for Users)
+# Designing APIs for Users
 * Tập trung vào việc **thiết kế API từ góc độ của người dùng API**. Mục tiêu chính là tạo ra các API dễ hiểu và dễ sử dụng.
 
 ### Tại sao cần thiết kế API vì người dùng?

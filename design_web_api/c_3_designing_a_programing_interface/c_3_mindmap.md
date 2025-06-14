@@ -1,4 +1,4 @@
-# Thiết kế REST API (Designing REST APIs)
+# Designing REST APIs
 
 ## Giới thiệu về REST API
 
