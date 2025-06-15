@@ -1,16 +1,19 @@
 # What is API design?
-* Chương này khám phá API là gì, tại sao việc thiết kế nó lại quan trọng, và ý nghĩa của việc thiết kế API.
+Chương này khám phá API là gì,
+tại sao việc thiết kế nó lại quan trọng,
+và ý nghĩa của việc thiết kế API.
 
 ### 1.1 What is an API?
-
-#### API được hiểu là một API từ xa (remote API), cụ thể hơn là một web API – một giao diện web cho phần mềm. API trước hết là một giao diện.
+API được hiểu là một API từ xa (remote API),
+cụ thể hơn là một web API 
+một giao diện web cho phần mềm. API trước hết là một giao diện.
 
 ##### 1.1.1 API là giao diện web cho phần mềm (An API is a web interface for software)
 * API là giao diện lập trình cho ứng dụng.
 * Cung cấp các chức năng có thể cần dữ liệu đầu vào hoặc trả về dữ liệu đầu ra.
 * **API chỉ là giao diện do phần mềm cung cấp, một lớp trừu tượng của việc triển khai cơ bản**.
 * Web API là các API từ xa có thể sử dụng giao thức HTTP.
-* **Ví dụ:** Ứng dụng mạng xã hội chia sẻ ảnh sử dụng API camera, API xử lý ảnh, và API từ xa (web API) của máy chủ mạng xã hội.
+* **Ví dụ:** Ứng dụng mạng xã hội chia sẻ ảnh sử dụng API camera,\API xử lý ảnh, và API từ xa (web API) của máy chủ mạng xã hội.
 
 ##### 1.1.2 API biến phần mềm thành các khối LEGO® (APIs turn software into LEGO® bricks)
 * Web API biến phần mềm thành các khối có thể tái sử dụng và dễ dàng lắp ráp.

@@ -1,3 +1,4 @@
+## Designing a network-efficient API
 ### 1. Tổng quan về các vấn đề truyền thông mạng
 
 *   **Tầm quan trọng**: Hiệu quả truyền thông mạng là một yếu tố **quan trọng mà bất kỳ nhà thiết kế API nào cũng phải nắm rõ**. Các API không hiệu quả có thể dẫn đến giao diện người dùng chậm, tiêu hao pin trên thiết bị di động, và sử dụng băng thông mạng cao, gây tăng chi phí cho hạ tầng đám mây hoặc tắc nghẽn cho các hệ thống tại chỗ (on-premise).
