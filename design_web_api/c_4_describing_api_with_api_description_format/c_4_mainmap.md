@@ -8,7 +8,7 @@ Ví dụ: Mô tả mục tiêu "Thêm sản phẩm vào danh mục" bằng YAML.
 
 ### 1.1.1 Giới thiệu Đặc tả OpenAPI (OAS)
 * Định dạng mô tả API REST độc lập với ngôn ngữ lập trình, thúc đẩy bởi Sáng kiến OpenAPI (OAI).
-* Trước đây là Đặc tả Swagger, phiên bản mới nhất (khi viết sách) là 3.0.
+* Trước đây là Đặc tả Swagger, phiên bản mới nhất (khi viết sách) là 3.0./ Lasted version: 3.1.1
 * Có thể viết bằng YAML (khuyến nghị vì dễ đọc) hoặc JSON.
 * Cấu trúc OAS cơ bản:
     - `openapi`: Phiên bản đặc tả.

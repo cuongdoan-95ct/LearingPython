@@ -26,7 +26,7 @@ Dưới đây là chi tiết về từng phần:
 *   **Các nguyên tắc cơ bản của HTTP**:
     *   Giao thức HTTP được sử dụng cho cả việc duyệt web (bởi con người) và các API web (bởi phần mềm).
 
-    *   HTTP sử dụng các **yêu cầu** và **phản hồi**. Máy khách (client) gửi yêu cầu đến máy chủ (server) và máy chủ gửi phản hồi trở lại.
+    *   HTTP sử dụng các **request** và **response**. Máy khách (client) gửi yêu cầu đến máy chủ (server) và máy chủ gửi phản hồi trở lại.
     *   **Đường dẫn (paths)** xác định tài nguyên mà hành động sẽ áp dụng.
 
     *   **Phương thức HTTP**: Các phương thức như GET, POST, PUT, DELETE, PATCH xác định hành động được thực hiện trên tài nguyên. Ví dụ:
@@ -113,7 +113,7 @@ Sau khi chuyển đổi mục tiêu thành tài nguyên và hành động đư�
 *   **3.3.1 Thiết kế khái niệm**:
     *   Các khái niệm đã xác định (tài nguyên) sẽ được trao đổi giữa người dùng và nhà cung cấp thông qua tham số và giá trị trả về.
     *   Khi thiết kế một cấu trúc dữ liệu cho khái niệm, phải đảm bảo tính **thân thiện với người dùng** và **không để lộ các chi tiết nội bộ** của nhà cung cấp.
-    *   Bắt đầu bằng cách **liệt kê các thuộc tính (properties)** của khái niệm. Ví dụ với tài nguyên sản phẩm, các thuộc tính có thể là `reference`, `name`, `price`, `dateAdded`, `unavailable`, `warehouses`, `description`, `supplier`.
+    *   Bắt đầu bằng cách **liệt kê các thuộc tính (properties)** của tài nguyên. Ví dụ với tài nguyên sản phẩm, các thuộc tính có thể là `reference`, `name`, `price`, `dateAdded`, `unavailable`, `warehouses`, `description`, `supplier`.
     *   Đối với mỗi thuộc tính, cần phân tích xem nó có **dễ hiểu** không, có **thật sự liên quan đến người dùng** không và có **thật sự hữu ích** không. Có thể cần **đổi tên**, **xóa bỏ**, hoặc **tái cấu trúc** các thuộc tính để đảm bảo tính thân thiện với người dùng. Ví dụ: xóa thuộc tính `warehouses` vì không liên quan đến người dùng; đổi tên `unavailable` thành `definitelyOutOfStock` để rõ ràng hơn.
     *   Thông tin quan trọng nhất về một thuộc tính là **tên** của nó; tên càng tự giải thích càng tốt.
     *   Ngoài tên, cần xác định **loại dữ liệu (type)** cho mỗi thuộc tính. Nên sử dụng các **loại dữ liệu cơ bản, dễ di chuyển** giữa các ngôn ngữ lập trình như `string`, `number`, `date`, hoặc `boolean`.

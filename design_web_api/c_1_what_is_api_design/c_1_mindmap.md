@@ -3,6 +3,7 @@
 API được hiểu là một API từ xa (remote API),
 cụ thể hơn là một web API 
 một giao diện web cho phần mềm. API trước hết là một giao diện.
+Là nơi gặp, tương tác giữa hai hệ thống, chủ thể, tổ chức.
 
 #### 1.1.1 API là giao diện web cho phần mềm (An API is a web interface for software)
 * API là giao diện lập trình cho ứng dụng.

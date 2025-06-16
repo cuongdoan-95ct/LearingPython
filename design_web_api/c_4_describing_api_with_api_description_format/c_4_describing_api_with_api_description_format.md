@@ -44,7 +44,7 @@ Ví dụ, mục tiêu "Thêm sản phẩm vào danh mục" (add product to catal
                                 example: 44.99
 ```
 
-Tệp này sử dụng dữ liệu để kể lại câu chuyện về cách thêm sản phẩm. Nó cho biết tài nguyên `/products` đại diện cho danh mục, hỗ trợ phương thức HTTP `POST` để thêm sản phẩm. Thao tác `POST` này yêu cầu một thân yêu cầu (`requestBody`) chứa thông tin sản phẩm, được mô tả là đối tượng JSON với các thuộc tính `name` (string) và `price` (number), kèm theo các ví dụ.
+Tệp này sử dụng dữ liệu để kể lại câu chuyện về cách thêm sản phẩm. Nó cho biết tài nguyên `/products` đại diện cho danh mục, hỗ trợ phương thức HTTP `POST` để thêm sản phẩm. Thao tác `POST` này yêu cầu một `requestBody` chứa thông tin sản phẩm, được mô tả là đối tượng JSON với các thuộc tính `name` (string) và `price` (number), kèm theo các ví dụ.
 
 Điều quan trọng là vì tệp này chứa **dữ liệu có cấu trúc**, các chương trình có thể đọc nó và chuyển đổi dễ dàng thành dạng khác, ví dụ, tạo tài liệu tham khảo tự động.
 
@@ -196,14 +196,35 @@ Tham số truy vấn (query parameter) được thêm vào sau dấu `?` trong U
 Ví dụ, mô tả tham số truy vấn `free-query` cho thao tác `GET /products`:
 
 ```yaml
-parameters:
-    - name: free-query # Tên tham số
-      description: |
-        A product's name, reference, or partial description
-      in: query # Vị trí: tham số truy vấn
-      required: false # Không bắt buộc
-      schema:
-        type: string # Kiểu dữ liệu: chuỗi
+paths:
+    /products:
+        description: The products catalog
+        get: # Thêm thao tác GET
+            summary: Search for products # Tóm tắt
+            description: | # Mô tả chi tiết (multiline)
+                Search for products in catalog
+                using a free query parameter
+            parameters:
+                - name: free-query # Tên tham số
+                description: |
+                    A product's name, reference, or partial description
+                in: query # Vị trí: tham số truy vấn
+                required: false # Không bắt buộc
+                schema:
+                    type: string # Kiểu dữ liệu: chuỗi
+            responses: # Các phản hồi có thể
+                "200": # Mã trạng thái 200 OK
+                    description: |
+                        Products matching free query parameter
+        post: # Thêm thao tác POST
+            summary: Add product
+            description: |
+                Add product (described in product info
+                parameter) to catalog
+            responses:
+                "200":
+                    description: |
+                        Product added to catalog
 ```
 
 

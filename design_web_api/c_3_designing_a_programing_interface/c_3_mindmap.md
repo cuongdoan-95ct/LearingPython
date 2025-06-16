@@ -42,7 +42,7 @@ thành cấu trúc REST API.
 ### 3.2.1 Xác định tài nguyên và các mối quan hệ của chúng bằng API goals canvas
 Bước đầu tiên trong chuyển đổi. Nguồn: API goals canvas.
 Để xác định tài nguyên (resources): Liệt kê tất cả
-các danh từ mà động từ chính của mục tiêu áp dụng.
+các danh từ mà động từ chính của mục tiêu áp dụng vào.
 - Ví dụ: "thêm sản phẩm vào danh mục". `product`, `catalog` là tài nguyên.
 - `free query` không phải tài nguyên vì động từ "tìm kiếm" không áp dụng trực tiếp.
 
