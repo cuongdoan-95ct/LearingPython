@@ -1,6 +1,7 @@
 ### 1. Tổng quan về Tài liệu API
 
-Việc thiết kế API không chỉ dừng lại ở việc tạo ra các API dễ sử dụng; nó đòi hỏi phải xem xét toàn bộ ngữ cảnh mà API tồn tại, bao gồm giao diện, cách triển khai và cách sử dụng. **Tài liệu là một khía cạnh cực kỳ quan trọng** mà các nhà thiết kế API phải tham gia. Ngay cả những thiết kế đơn giản nhất cũng cần tài liệu để được hiểu rõ.
+Việc thiết kế API không chỉ dừng lại ở việc tạo ra các API dễ sử dụng; nó đòi hỏi phải xem xét toàn bộ ngữ cảnh mà API tồn tại, bao gồm giao diện, cách triển khai và cách sử dụng.  
+**Tài liệu là một khía cạnh cực kỳ quan trọng** mà các nhà thiết kế API phải tham gia. Ngay cả những thiết kế đơn giản nhất cũng cần tài liệu để được hiểu rõ.
 
 Các loại tài liệu API chính bao gồm:
 *   **Tài liệu tham khảo (Reference Documentation)**: Đây là loại tài liệu API được biết đến nhiều nhất, liệt kê và mô tả các mục tiêu (goals) có sẵn cũng như các đầu vào và đầu ra của chúng.

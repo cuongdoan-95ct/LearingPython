@@ -1,7 +1,212 @@
-openapi: 3.0.4
+openapi: 3.0.3
 info:
-  title: Designing API example
-  description: |-
-    Designing API example for learning purposes.
-  version: 0.0.1
-paths: {}
+  title: Authentication API
+  description: |
+    API để quản lý quy trình đăng ký, xác minh KYC, và kích hoạt tài khoản.  
+    **Luồng sử dụng**:
+    1. **Đăng ký tài khoản**: Sử dụng `POST /v1/auth/signup` để tạo tài khoản mới.
+    2. **Điền thông tin KYC**: Sử dụng `POST /v1/auth/kyc` để gửi thông tin xác minh danh tính.
+    3. **Kích hoạt tài khoản**: Sử dụng `POST /v1/auth/verify` để kích hoạt tài khoản sau khi nhận mã xác minh.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+    description: Môi trường production
+  - url: https://sandbox.example.com/v1
+    description: Môi trường sandbox để thử nghiệm
+tags:
+  - name: Authentication
+    description: Các endpoint liên quan đến xác thực và quản lý tài khoản
+externalDocs:
+  description: Hướng dẫn chi tiết về quy trình KYC
+  url: https://docs.example.com/kyc-guide
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key được cấp khi đăng ký làm consumer. Liên hệ support@example.com để nhận key.
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Sử dụng JWT token nhận được từ `/v1/auth/signup` hoặc `/v1/auth/login` để xác thực.
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "INVALID_REQUEST"
+        message:
+          type: string
+          example: "Thiếu tham số bắt buộc"
+    SignupRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        password:
+          type: string
+          example: "SecurePass123!"
+    SignupResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "U12345"
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    KycRequest:
+      type: object
+      required: [fullName, documentId, documentImage]
+      properties:
+        fullName:
+          type: string
+          example: "Nguyen Van A"
+        documentId:
+          type: string
+          example: "123456789"
+        documentImage:
+          type: string
+          format: base64
+          description: Hình ảnh giấy tờ tùy thân (định dạng base64)
+    KycResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "pending"
+    VerifyRequest:
+      type: object
+      required: [verificationCode]
+      properties:
+        verificationCode:
+          type: string
+          example: "ABC123"
+    VerifyResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "activated"
+paths:
+  /auth/signup:
+    post:
+      tags: [Authentication]
+      summary: Đăng ký tài khoản mới
+      description: |
+        Tạo tài khoản người dùng mới với email và mật khẩu.  
+        Sau khi đăng ký thành công, hệ thống gửi mã xác minh qua email và trả về JWT token để sử dụng cho các bước tiếp theo.
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+            examples:
+              signup-example:
+                summary: Ví dụ đăng ký tài khoản
+                value:
+                  email: "user@example.com"
+                  password: "SecurePass123!"
+      responses:
+        '201':
+          description: Tài khoản được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupResponse'
+              examples:
+                success:
+                  summary: Đăng ký thành công
+                  value:
+                    userId: "U12345"
+                    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '400':
+          description: Lỗi do dữ liệu không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/kyc:
+    post:
+      tags: [Authentication]
+      summary: Gửi thông tin KYC
+      description: |
+        Gửi thông tin xác minh danh tính (KYC) để xác thực tài khoản.  
+        Yêu cầu JWT token từ bước đăng ký. Sau khi gửi, trạng thái KYC sẽ là `pending` cho đến khi được duyệt.
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KycRequest'
+            examples:
+              kyc-example:
+                summary: Ví dụ gửi thông tin KYC
+                value:
+                  fullName: "Nguyen Van A"
+                  documentId: "123456789"
+                  documentImage: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE..."
+      responses:
+        '200':
+          description: Thông tin KYC được gửi thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KycResponse'
+              examples:
+                success:
+                  summary: KYC đang chờ duyệt
+                  value:
+                    status: "pending"
+        '401':
+          description: Token không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/verify:
+    post:
+      tags: [Authentication]
+      summary: Kích hoạt tài khoản
+      description: |
+        Kích hoạt tài khoản bằng mã xác minh được gửi qua email.  
+        Yêu cầu JWT token từ bước đăng ký.
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+            examples:
+              verify-example:
+                summary: Ví dụ kích hoạt tài khoản
+                value:
+                  verificationCode: "ABC123"
+      responses:
+        '200':
+          description: Tài khoản được kích hoạt thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+              examples:
+                success:
+                  summary: Kích hoạt thành công
+                  value:
+                    status: "activated"
+        '400':
+          description: Mã xác minh không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

@@ -85,8 +85,6 @@ Giống như việc sắp xếp các nút trên một chiếc điều khiển TV
             *   Thay vì `/accounts/{id}` và `/beneficiaries/{id}`, bạn có thể có `/account/accounts/{id}` và `/transfer/beneficiaries/{id}`.
         *   Cách này có thể khiến các đường dẫn dễ đoán hơn, nhưng đôi khi cũng có thể làm chúng ít đơn giản hơn.
 
----
-
 ### **7.2 Xác định kích thước API (Sizing an API)**
 
 Các nguyên tắc "Less is more" (ít hơn là tốt hơn) và "a place for everything and everything in its place" (mọi thứ đều có chỗ và mọi thứ đều ở đúng chỗ) rất quan trọng trong thiết kế API. Mỗi khía cạnh của API, bao gồm dữ liệu và mục tiêu, nên được định kích thước một cách khôn ngoan. Đôi khi, một API có vẻ là một khối duy nhất có thể cần được chia thành nhiều API nhỏ hơn.

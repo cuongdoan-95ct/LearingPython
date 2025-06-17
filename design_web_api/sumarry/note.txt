@@ -1,0 +1,11 @@
+
+Chương 5: Thiết kế API rõ ràng
+- Thiết kế các biểu diễn rõ ràng
+    - Tên rõ ràng
+    - Kiểu dữ liệu và định dạng rõ ràng.
+    - API nên cung cấp các dữ liệu liên quan hữu ích, tránh call API nhiều lần.
+
+- Thiết kế tương tác rõ ràng.
+    - Đầu vào rõ ràng, tên dễ hiểu, dễ cung cấp.
+    - Lỗi: cung cấp danh sách lỗi có thể sẩy ra.
+	
