@@ -1,2 +1,2 @@
-# LearingPython
+# Learning
 My Project CNN
