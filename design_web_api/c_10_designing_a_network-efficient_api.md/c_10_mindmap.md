@@ -1,8 +1,7 @@
-# Thiết kế API hiệu quả mạng (Designing a network-efficient API)
+# C10: Thiết kế API hiệu quả mạng (Designing a network-efficient API)
 
-### 1. Tổng quan về các vấn đề truyền thông mạng
-
-#### Hiệu quả truyền thông mạng là một yếu tố **quan trọng mà bất kỳ nhà thiết kế API nào cũng phải nắm rõ**.
+## 10.1 Tổng quan về các vấn đề truyền thông mạng
+* Hiệu quả truyền thông mạng là một yếu tố **quan trọng mà bất kỳ nhà thiết kế API nào cũng phải nắm rõ**.
 
 * **Tầm quan trọng**: API không hiệu quả gây chậm giao diện người dùng, tiêu hao pin, tăng băng thông mạng, tăng chi phí hạ tầng.
 * **Ví dụ minh họa**: Ứng dụng Ngân hàng Tuyệt vời trên di động với mạng 3G không tốt tiêu thụ API Ngân hàng được sửa đổi nhẹ.
@@ -19,10 +18,8 @@
     * **Mối quan tâm của nhà cung cấp**: Chi phí dịch vụ đám mây dựa trên số lượng cuộc gọi, thời gian xử lý, khối lượng dữ liệu gửi đi.
 * **Các khía cạnh của hiệu quả mạng**: Tốc độ, khối lượng dữ liệu và số lượng cuộc gọi.
 
-### 2. Đảm bảo hiệu quả truyền thông mạng ở cấp độ giao thức
-
-#### Các tối ưu hóa ở cấp độ giao thức có thể được thực hiện **mà không ảnh hưởng nhiều đến thiết kế lý tưởng** của API.
-
+## 10.2 Đảm bảo hiệu quả truyền thông mạng ở cấp độ giao thức
+* Các tối ưu hóa ở cấp độ giao thức có thể được thực hiện **mà không ảnh hưởng nhiều đến thiết kế lý tưởng** của API.
 * **Kích hoạt nén và kết nối liên tục**:
     * **Nén (Compression)**: Giảm khối lượng dữ liệu (ví dụ: 310 KB xuống dưới 2 KB), tải xuống nhanh hơn, sử dụng ít dữ liệu hơn. Hầu hết thư viện HTTP hỗ trợ **minh bạch**.
     * **Kết nối liên tục (Persistent Connections)**: Giảm độ trễ bằng cách giữ kết nối mở (ví dụ: loại bỏ 6 * 300 ms độ trễ).
@@ -35,10 +32,8 @@
     * **Hạn chế của REST: Caching**: Yêu cầu phản hồi phải cho biết khả năng lưu vào bộ nhớ đệm. gRPC có thể không có caching gốc.
     * **Lựa chọn chính sách bộ nhớ đệm**: Vấn đề phức tạp, cần đánh giá từng mục tiêu và thuộc tính, thường đòi hỏi tư vấn từ đội an ninh và pháp lý.
 
-### 3. Đảm bảo hiệu quả truyền thông mạng ở cấp độ thiết kế
-
-#### **Thiết kế API cơ bản quyết định số lượng cuộc gọi** và lượng dữ liệu trao đổi giữa người dùng và nhà cung cấp.
-
+## 10.3 Đảm bảo hiệu quả truyền thông mạng ở cấp độ thiết kế
+* **Thiết kế API cơ bản quyết định số lượng cuộc gọi** và lượng dữ liệu trao đổi giữa người dùng và nhà cung cấp.
 * **Kích hoạt tính năng lọc (Filtering)**:
     * Cho phép người dùng yêu cầu **chỉ dữ liệu họ thực sự cần**, cải thiện hiệu quả và khả năng sử dụng.
     * **Phân trang dựa trên offset**: Tham số truy vấn `page` và `size`.

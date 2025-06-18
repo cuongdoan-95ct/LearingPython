@@ -1,6 +1,6 @@
 # The design of web api
 
-## C1 What is API design?
+## C1: What is API design?
 ### 1.1 What is an API?
 #### 1.1.1 API là giao diện web cho phần mềm (An API is a web interface for software)
 #### 1.1.2 API biến phần mềm thành các khối LEGO® (APIs turn software into LEGO® bricks)
@@ -16,7 +16,7 @@ giao diện, biết toàn bộ ngữ cảnh, và thể hiện sự đồng cảm
 #### 1.3.1 Học các nguyên tắc vượt ra ngoài thiết kế giao diện lập trình (Learning the principles beyond programming interface design)
 #### 1.3.2 Khám phá tất cả các khía cạnh của thiết kế API (Exploring all facets of API design)
 
-## Designing APIs for Users
+## C2: Designing APIs for Users
 ### Tại sao cần thiết kế API vì người dùng?
 API được tạo ra vì người dùng của nó để giúp họ đạt được mục tiêu của mình.
 ### Góc nhìn đúng đắn trong thiết kế
@@ -29,7 +29,7 @@ API là bảng điều khiển của phần mềm, là những gì họ có th�
 ### Sử dụng API Goals Canvas
 ### Tránh Góc nhìn của Nhà cung cấp (Avoiding the Provider’s Perspective)
 
-## Designing REST APIs
+## C3: Designing REST APIs
 ### 3.1 Để thiết kế một REST API, trước tiên cần hiểu cách nó hoạt động
 #### Phân tích một lệnh gọi REST API
 #### Các nguyên tắc cơ bản của HTTP
@@ -57,7 +57,7 @@ Quy trình thiết kế dữ liệu
 #### 3.5.1 Giới thiệu kiến trúc REST
 #### 3.5.2 Tác động của các ràng buộc REST đối với thiết kế API
 
-## Mô tả API của bạn với Định dạng mô tả API
+## C4: Mô tả API của bạn với Định dạng mô tả API
 ### 1. Định dạng mô tả API là gì? (What is an API description format?)
 #### 1.1.1 Giới thiệu Đặc tả OpenAPI (OAS)
 #### 1.1.2 Tại sao nên sử dụng định dạng mô tả API?
@@ -78,7 +78,7 @@ Quy trình thiết kế dữ liệu
 #### 4.4.1 Tái sử dụng các thành phần (Reusing components)
 #### 4.4.2 Mô tả tham số đường dẫn (Describing path parameters)
 
-## Thiết kế API rõ ràng
+## C5: Thiết kế API rõ ràng
 ### 5.1 Thiết kế các biểu diễn rõ ràng (Designing Straightforward Representations)
 #### 5.1.1 Chọn tên rõ ràng (Choosing Crystal-Clear Names)
 #### 5.1.2 Chọn kiểu và định dạng dữ liệu dễ sử dụng (Choosing Easy-to-Use Data Types and Formats)
@@ -97,7 +97,7 @@ Quy trình thiết kế dữ liệu
 #### 5.3.3 Tổng hợp mục tiêu (Aggregating Goals)
 #### 5.3.4 Thiết kế luồng không trạng thái (Designing Stateless Flows)
 
-## Làm cho API của bạn dễ đoán (Making Your API Predictable)
+## C6: Làm cho API của bạn dễ đoán (Making Your API Predictable)
 ### 6.1. Trở nên nhất quán (Being Consistent)
 #### 6.1.1. Thiết kế dữ liệu nhất quán (Designing Consistent Data)
 #### 6.1.2. Thiết kế các mục tiêu (Goals) nhất quán (Designing Consistent Goals)
@@ -115,7 +115,7 @@ Quy trình thiết kế dữ liệu
 #### 6.3.2. Tạo API siêu phương tiện (Creating Hypermedia APIs)
 #### 6.3.3. Tận dụng giao thức HTTP (Taking Advantage of the HTTP Protocol)
 
-## Thiết kế API ngắn gọn và có tổ chức tốt (Designing concise and well-organized APIs)
+## C7: Thiết kế API ngắn gọn và có tổ chức tốt (Designing concise and well-organized APIs)
 ### 7.1 Tổ chức API (Organizing an API)
 #### 7.1.1 Tổ chức dữ liệu (Organizing Data)
 #### 7.1.2 Tổ chức phản hồi (Organizing Feedback)
@@ -126,7 +126,7 @@ Quy trình thiết kế dữ liệu
 #### 7.2.2 Chọn mức độ chi tiết mục tiêu (Choosing Goal Granularity)
 #### 7.2.3 Chọn mức độ chi tiết API (Choosing API Granularity)
 
-## Thiết kế API bảo mật
+## C8: Thiết kế API bảo mật
 ### 8.1 Tổng quan về Bảo mật API (An Overview of API Security)
 #### 8.1.1 Đăng ký người dùng (Registering a consumer)
 #### 8.1.2 Nhận thông tin xác thực
@@ -148,8 +148,8 @@ Quy trình thiết kế dữ liệu
 #### 8.4.3 Thiết kế phản hồi lỗi an toàn (Designing secure error feedback)
 #### 8.4.4 Xác định các vấn đề về kiến trúc và giao thức (Identifying architecture and protocol issues)
 
-## Evolving an API design
-### 1. Thiết kế các tiến hóa API (Designing API evolutions)
+## C9: Evolving an API design
+### 9.1 Thiết kế các tiến hóa API (Designing API evolutions)
 #### Tránh các thay đổi gây lỗi trong dữ liệu đầu ra (Avoiding breaking changes in output data)
 #### Tránh các thay đổi gây lỗi đối với dữ liệu đầu vào và tham số (Avoiding breaking changes to input data and parameters)
 #### Tránh các thay đổi gây lỗi trong phản hồi thành công và lỗi (Avoiding breaking changes in success and error feedback)
@@ -158,22 +158,26 @@ Quy trình thiết kế dữ liệu
 #### Lưu ý về hợp đồng giao diện vô hình (Being aware of the invisible interface contract)
 #### Khi nào một thay đổi gây lỗi không phải là vấn đề? (Introducing a breaking change is not always a problem)
 
-### 2. Phiên bản hóa API (Versioning an API)
+### 9.2 Phiên bản hóa API (Versioning an API)
 #### Phiên bản hóa API so với phiên bản hóa triển khai (Contrasting API and implementation versioning)
 #### Chọn cách biểu diễn phiên bản API từ góc độ người dùng (Choosing an API versioning representation from the consumer's perspective)
 #### Chọn mức độ chi tiết của phiên bản API (Choosing API versioning granularity)
 #### Hiểu tác động của phiên bản hóa API ngoài thiết kế (Understanding the impact of API versioning beyond design)
 
-### 3. Thiết kế API có khả năng mở rộng (Designing APIs with extensibility in mind)
+### 9.3 Thiết kế API có khả năng mở rộng (Designing APIs with extensibility in mind)
 #### Thiết kế dữ liệu có khả năng mở rộng (Designing extensible data)
 #### Thiết kế tương tác có khả năng mở rộng (Designing extensible interactions)
 #### Thiết kế luồng có khả năng mở rộng (Designing extensible flows)
 #### Thiết kế API có khả năng mở rộng (Designing extensible APIs)
 
-## C10 Thiết kế API hiệu quả mạng (Designing a network-efficient API)
-### 1. Tổng quan về các vấn đề truyền thông mạng
-### 2. Đảm bảo hiệu quả truyền thông mạng ở cấp độ giao thức
-### 3. Đảm bảo hiệu quả truyền thông mạng ở cấp độ thiết kế
+## C10: Thiết kế API hiệu quả mạng (Designing a network-efficient API)
+### 10.1 Tổng quan về các vấn đề truyền thông mạng
+#### độ trễ, gửi yêu cầu, xử lý phía máy chủ, tải xuống phản hồi, tổng thời gian một request.
+
+### 10.2 Đảm bảo hiệu quả truyền thông mạng ở cấp độ giao thức
+#### Kích hoạt nén và kết nối liên tục, kích hoạt bộ nhớ đệm.
+
+### 10.3 Đảm bảo hiệu quả truyền thông mạng ở cấp độ thiết kế
 
 ## C11: Thiết kế API trong ngữ cảnh
 ### 11.1 Điều chỉnh giao tiếp theo mục tiêu và bản chất của dữ liệu
@@ -191,32 +195,39 @@ Quy trình thiết kế dữ liệu
 #### 11.3.2 Suy nghĩ vượt ra ngoài các API dựa trên yêu cầu/phản hồi và HTTP (Thinking beyond request/response- and HTTP-based APIs)
 
 ## Chương 12: Tài liệu hóa API của bạn (Documenting Your API)
-### 1. Tổng quan về Tài liệu API
-### 2. Tạo Tài liệu Tham khảo (Reference Documentation)
-#### 2.1. Tài liệu hóa các Mô hình Dữ liệu (Documenting Data Models)
-#### 2.2. Tài liệu hóa các Mục tiêu/Chức năng (Documenting Goals)
-#### 2.3. Tài liệu hóa Bảo mật (Documenting Security)
-#### 2.4. Cung cấp Tổng quan về API (Providing an Overview of the API)
-#### 2.5. Tạo Tài liệu từ việc Triển khai: Ưu và Nhược điểm (Generating Documentation from the Implementation: Pros and Cons)
+### 12.1 Tổng quan về Tài liệu API
+#### Tài liệu cho API cực kỳ quan trọng, có 3 loại tài liệu chính: ``tài liệu tham khaỏ``, ``hướng dẫn sử dụng``, `` nhật ký thay ddooir``, `` thông số kỹ thuật triển khai``
 
-### 3. Tạo Hướng dẫn Sử dụng (Creating a User Guide)
-#### 3.1. Tài liệu hóa các Trường hợp Sử dụng (Documenting Use Cases)
-#### 3.2. Tài liệu hóa Bảo mật (Documenting Security)
-#### 3.3. Cung cấp Tổng quan về các Hành vi và Nguyên tắc chung (Providing an Overview of Common Behaviors and Principles)
-#### 3.4. Suy nghĩ vượt ra ngoài Tài liệu Tĩnh (Thinking Beyond Static Documentation)
+### 12.2 Tạo Tài liệu Tham khảo (Reference Documentation)
+#### 12.2.1 Tài liệu hóa các Mô hình Dữ liệu (Documenting Data Models)
+#### 12.2.2 Tài liệu hóa các Mục tiêu/Chức năng (Documenting Goals)
+#### 12.2.3 Tài liệu hóa Bảo mật (Documenting Security)
+#### 12.2.4 Cung cấp Tổng quan về API (Providing an Overview of the API)
+#### 12.2.5 Tạo Tài liệu từ việc Triển khai: Ưu và Nhược điểm (Generating Documentation from the Implementation: Pros and Cons)
 
-### 4. Cung cấp Thông tin đầy đủ cho Người Triển khai (Providing Adequate Information to Implementers)
-### 5. Tài liệu hóa các Bản cập nhật và việc Ngừng sử dụng (Documenting Evolutions and Retirement)
+### 12.3 Tạo Hướng dẫn Sử dụng (Creating a User Guide)
+#### 12.3.1 Tài liệu hóa các Trường hợp Sử dụng (Documenting Use Cases)
+#### 12.3.2 Tài liệu hóa Bảo mật (Documenting Security)
+#### 12.3.3 Cung cấp Tổng quan về các Hành vi và Nguyên tắc chung (Providing an Overview of Common Behaviors and Principles)
+#### 12.3.4 Suy nghĩ vượt ra ngoài Tài liệu Tĩnh (Thinking Beyond Static Documentation)
+
+### 12.4 Cung cấp Thông tin đầy đủ cho Người Triển khai (Providing Adequate Information to Implementers)
+### 12.5 Tài liệu hóa các Bản cập nhật và việc Ngừng sử dụng (Documenting Evolutions and Retirement)
 
 ## Chương 13: Phát triển API (Growing APIs)
 ### 13.1 Vòng đời API (The API lifecycle)
 #### Vòng đời API mô tả cách một API được sinh ra, tồn tại và cuối cùng là ngừng hoạt động.
+#### Các giai đoạn chính: phân tích, thiết kế, thực hiện, xuất bản, chạy, phát triển, ngừng hoạt động
+#### phân tích, thiết kế, thực hiện: lặp đi lặp lại
 
 ### 13.2 Xây dựng hướng dẫn thiết kế API (Building API design guidelines)
 #### Việc xác định các hướng dẫn là điều bắt buộc để đảm bảo tính nhất quán trong và giữa các API của tổ chức/nhóm.
+#### Cấu trúc 3 lớp: Hướng dẫn tham chiếu, hướng dẫn trường hợp sử dụng, Hướng dẫn quy trình thiết kế
+#### Quá trính xây dựng: Bắt đầu nhỏ và chính xác ->  phát triển, thích nghi và sữa chữa -> xây dựng tập thể, không giáo điều.
 
 ### 13.3 Đánh giá API (Reviewing APIs)
 #### API cần được đánh giá ở các giai đoạn khác nhau của vòng đời để đảm bảo chúng hoạt động như dự định.
+#### Các giai đoạn đánh giá: Thách thức và phân tích yêu cầu -> kiểm tra thiết kế -> đánh giá thiết kế từ quan điểm nhà cung cấp -> đánh giá thiết kế từ quan điểm người tiêu dùng -> Xác minh việc triển khai.
 
 ### 13.4 Giao tiếp và Chia sẻ (Communicating and Sharing)
 #### Các nhà thiết kế API không làm việc một mình; họ cộng tác với nhiều vai trò khác nhau.
